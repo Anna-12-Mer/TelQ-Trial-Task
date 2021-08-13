@@ -1,9 +1,14 @@
 .countries-label{
-    padding: 16px 90px;
-    background-color: #4472c4;
-    color: white;
+  margin: 10px;
+  padding: 1% 22%;
+  background-color: #4472c4;
+  border-radius: 7px;
+  color: white;
 }
-
+.countries-select{
+  width: 50%;
+}
 .send-test {
-background-color: #4472c4;
+  margin  : 10px;
+  background-color: #4472c4;
 }

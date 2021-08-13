@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./history-table.component.css']
 })
 export class HistoryTableComponent implements OnInit {
-
+  page: number = 1;
   @Input() countriesInput: any;
 
   constructor() {

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CountriesTestService } from '../services/countries-test.service';
+// using Swal alert
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-countries',
@@ -9,8 +10,8 @@ import { CountriesTestService } from '../services/countries-test.service';
 })
 export class ListCountriesComponent implements OnInit {
 
-  selectedCountryNames: any = {};
-  selectedCountries : any = []
+  selectedCountryNames: any = [];
+  selectedCountries: any = []
   countries: any = [];
 
   @Output() countriesEvent = new EventEmitter();
@@ -31,25 +32,36 @@ export class ListCountriesComponent implements OnInit {
   }
   //** Get all selected countries */
   selectedCountriesItem(event: any) {
-    event.target.value.forEach((element: string ) => {
-      this.selectedCountryNames.countryName = event.target.value
+    event.target.value.forEach((element: string) => {
+      this.selectedCountryNames = element
     });
   }
 
   //** Submit button */
   tests() {
-    let body : any = {};
-    this.selectedCountryNames.forEach((country :string) => {
-      body.countryName= country;
-      this.selectedCountries.push(body)
-      body= {};
-    });
-    // Call the EP from the service
-    this.countriesTestService.sendData(this.selectedCountries).subscribe((res : any)=>{
-      // Sending data from the child to the parent (root)
-      this.countriesEvent.emit(res);
-    },(error : any)=>{
-      console.log(error);
-    });
-   }
+    // if the selectedCountryNames array is not empty
+    if (this.selectedCountryNames.length !== 0) {
+      let body: any = {};
+      this.selectedCountryNames.forEach((country: string) => {
+        body.countryName = country;
+        this.selectedCountries.push(body)
+        body = {};
+      });
+      // Call the EP 'sendData' from the service
+      this.countriesTestService.sendData(this.selectedCountries).subscribe((res: any) => {
+        // Sending data from the child to the parent (root) using the @output decorator
+        this.countriesEvent.emit(res);
+      }, (error: any) => {
+        console.log('error', error);
+      });
+    } else {
+      // show an error message
+      Swal.fire(
+        'Please, you have to choose at least one country',
+        '',
+        'info'
+      )
+    }
+    this.selectedCountries = []
+  }
 }

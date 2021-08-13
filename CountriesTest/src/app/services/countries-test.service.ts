@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { interval, Observable } from 'rxjs';
 
 const _url = 'https://interview.telqtele.com/'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,11 +18,11 @@ export class CountriesTestService {
   }
 
   //** Get All Countries */
-  getAllCountries(): Observable<any>{
+  getAllCountries(): Observable<any> {
     return this.http.get(_url + 'countries');
   }
   //** Post --  test endpoint */
-  sendData(data : any): Observable<any>{
+  sendData(data: any): Observable<any> {
     return this.http.post(_url + 'test', data);
   }
 }
