@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CountriesTestService } from '../services/countries-test.service';
 
@@ -11,13 +11,12 @@ export class ListCountriesComponent implements OnInit {
 
   selectedCountryNames: any = {};
   selectedCountries : any = []
-  countryFormGroup: any = FormGroup;
   countries: any = [];
 
-  constructor(private formBuilder: FormBuilder, private countriesTestService: CountriesTestService) {
-    this.countryFormGroup = this.formBuilder.group({
-      countries: [[], Validators.required]
-    });
+  @Output() countriesEvent = new EventEmitter();
+
+
+  constructor(private countriesTestService: CountriesTestService) {
     //** INIT */
     this.getAllCountries()
   }
@@ -43,10 +42,12 @@ export class ListCountriesComponent implements OnInit {
     this.selectedCountryNames.forEach((country :string) => {
       body.countryName= country;
       this.selectedCountries.push(body)
+      body= {};
     });
     // Call the EP from the service
     this.countriesTestService.sendData(this.selectedCountries).subscribe((res : any)=>{
-      console.log(res);
+      // Sending data from the child to the parent (root)
+      this.countriesEvent.emit(res);
     },(error : any)=>{
       console.log(error);
     });

@@ -1,8 +1,8 @@
 <div class="container">
   <div class="card">
     <div class="card-body">
-      <app-list-countries></app-list-countries>
-      <app-history-table></app-history-table>
+      <app-list-countries (countriesEvent)="getCountries($event)"></app-list-countries>
+      <app-history-table [countriesInput] = "countries"></app-history-table>
     </div>
   </div>
 </div>

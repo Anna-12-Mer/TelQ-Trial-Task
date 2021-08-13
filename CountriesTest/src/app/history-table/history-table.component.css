@@ -2,5 +2,11 @@ table{
   margin: 15px;
 }
 .thead-table{
-  color: #4472c4;
+  background-color: #4472c4;
+  color: white;
+  text-align: center;
+}
+.tr-table {
+  color: black;
+  text-align: left;
 }

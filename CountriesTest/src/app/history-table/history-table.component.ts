@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-history-table',
@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoryTableComponent implements OnInit {
 
-  constructor() { }
+  @Input() countriesInput: any;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

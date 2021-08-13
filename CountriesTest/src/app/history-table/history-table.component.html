@@ -7,8 +7,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Mark</td>
+      <tr class="tr-table" *ngFor="let country of countriesInput">
+        <td>{{country.countryName}}</td>
+        <td  [style.color]="country.testStatus ==='Failed' ? 'red' : 'green'">{{country.testStatus}}</td>
       </tr>
     </tbody>
   </table>
