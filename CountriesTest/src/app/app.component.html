@@ -1,8 +1,12 @@
 <div class="container">
-  <div class="card">
-    <div class="card-body">
-      <app-list-countries (countriesEvent)="getCountries($event)"></app-list-countries>
-      <app-history-table [countriesInput] = "countries"></app-history-table>
-    </div>
+  <!-- list-countries component -->
+  <div class="card list-countries">
+    <app-list-countries (countriesEvent)="getCountries($event)"></app-list-countries>
   </div>
+  <!-- history-table component -->
+  <div class="card history-table">
+    <app-history-table [countriesInput]="countries"></app-history-table>
+  </div>
+  <!-- footer -->
+  <footer> TelQ - Trial Task @copyright 2021</footer>
 </div>

@@ -1,3 +1,4 @@
+<!-- History table  -->
 <div class="d-flex justify-content-center">
   <table class="table">
     <thead class="thead-table">
@@ -7,10 +8,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="tr-table" *ngFor="let country of countriesInput">
+      <tr class="tr-table" *ngFor="let country of countriesInput | paginate: { itemsPerPage: 3, currentPage: page }">
         <td>{{country.countryName}}</td>
-        <td  [style.color]="country.testStatus ==='Failed' ? 'red' : 'green'">{{country.testStatus}}</td>
+        <td [style.color]="country.testStatus ==='Failed' ? 'red' : 'green'">{{country.testStatus}}</td>
       </tr>
     </tbody>
   </table>
+</div>
+<!-- pagination -->
+<div class="d-flex justify-content-center pagination">
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
 </div>

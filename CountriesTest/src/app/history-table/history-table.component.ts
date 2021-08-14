@@ -6,7 +6,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./history-table.component.css']
 })
 export class HistoryTableComponent implements OnInit {
-
+  page: number = 1;
+  // Get countries selcted from the parent using @Input decorator
   @Input() countriesInput: any;
 
   constructor() {
