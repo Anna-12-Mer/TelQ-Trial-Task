@@ -11,7 +11,7 @@ export class CountriesTestService {
 
   constructor(private http: HttpClient) {
 
-    //** update the list of countries every 30 seconds */
+    //** update the list of countries every 30 seconds = 3000 miliseconds */
     interval(3000).subscribe(() => {
       this.getAllCountries()
     });

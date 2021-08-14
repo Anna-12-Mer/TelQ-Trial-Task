@@ -2,12 +2,14 @@
   <div class="d-flex justify-content-center">
     <label class="countries-label" for="countries"><i>Countries</i></label>
   </div>
+  <!-- List of countries -->
   <div class="d-flex justify-content-center">
     <ng-select class="countries-select" [multiple]="true" [(ngModel)]="selectedCountryNames" name="countries">
       <ng-option *ngFor="let country of countries" [value]="country.name" (change)="selectedCountriesItem($event)">
         {{country.name}}</ng-option>
     </ng-select>
   </div>
+  <!-- Button test -->
   <div class="d-flex justify-content-center">
     <button type="submit" class="btn btn-primary send-test" (click)="tests()">Send Tests</button>
   </div>

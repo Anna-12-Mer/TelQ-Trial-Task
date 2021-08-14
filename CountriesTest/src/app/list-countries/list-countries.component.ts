@@ -30,7 +30,7 @@ export class ListCountriesComponent implements OnInit {
       this.countries = data;
     })
   }
-  //** Get all selected countries */
+  //** Get all countries selected */
   selectedCountriesItem(event: any) {
     event.target.value.forEach((element: string) => {
       this.selectedCountryNames = element
@@ -39,7 +39,7 @@ export class ListCountriesComponent implements OnInit {
 
   //** Submit button */
   tests() {
-    // if the selectedCountryNames array is not empty
+    // check the selectedCountryNames array is not empty
     if (this.selectedCountryNames.length !== 0) {
       let body: any = {};
       this.selectedCountryNames.forEach((country: string) => {
@@ -62,6 +62,7 @@ export class ListCountriesComponent implements OnInit {
         'info'
       )
     }
+    // empty the table
     this.selectedCountries = []
   }
 }
